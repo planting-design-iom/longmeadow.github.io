@@ -113,6 +113,16 @@
     footer{border-top:1px solid #ecebe7;padding:2rem 0;background:#fbfbf9}
     .footer-inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
     .small{font-size:.9rem;color:#5b6570}
+  
+    /* --- Overrides: keep menu in header on desktop; center burger on mobile --- */
+    @media (min-width:821px){
+      .menu-btn{display:none}
+      header nav ul{display:flex !important;position:static;background:transparent;border:0;box-shadow:none;padding:0}
+    }
+    @media (max-width:820px){
+      .nav{position:relative}
+      .menu-btn{display:inline-block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
+    }
   </style>
 </head>
 <body>
