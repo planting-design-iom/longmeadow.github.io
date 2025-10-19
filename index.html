@@ -10,9 +10,9 @@
       --colour-bg:#FCFCFA; --colour-text:#2E3540; --colour-accent:#557A57; --colour-accent-2:#A6C1A6;
       --colour-muted:#E9E4DC; --maxw:1100px; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08);
 
-      /* === Tweak these two to fine-position mobile portrait hero content === */
-      --hero-mobile-minh: clamp(500px, 100vw, 720px);   /* sky.png height on small screens */
-      --hero-mobile-bottom: 18vh;                       /* push text UP from bottom (increase = higher) */
+      /* ↓ Tweak these to fine-position the hero text on mobile portrait ↓ */
+      --hero-mobile-minh: clamp(520px, 100vw, 740px); /* sky image height on small screens */
+      --hero-mobile-bottom: 18vh;                     /* raise text: bigger value = higher */
     }
 
     html,body{height:100%}
@@ -41,7 +41,7 @@
     .hero{position:relative;isolation:isolate}
     .hero .media{position:relative;min-height:clamp(420px,65vw,620px);background:#cfe0f5}
     .hero .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top}
-    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25) 50%,rgba(0,0,0,.15) 70%,rgba(0,0,0,0) 100%)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25) 50%,rgba(0,0,0,.15) 70%,rgba(0,0,0,0) 100%); z-index:1;}
     .hero .content{position:absolute;inset:0;display:grid;align-items:start;justify-items:center;padding:1rem}
     .hero .panel{max-width:900px;color:white;text-align:center;padding:1rem;margin-top:clamp(14vh,30vh,34vh)}
 
@@ -97,16 +97,17 @@
       }
       header.open nav ul{display:flex}
 
-      /* ---- HERO FIX: layer via grid, no absolute content, and add bottom offset ---- */
-      .hero{display:grid}                                         /* stack children */
+      /* ---- HERO FIX (portrait mobile): keep text inside image and above overlay ---- */
+      .hero{display:grid}                              /* stack children via grid */
       .hero>.media, .hero>.content{grid-area:1/1}
-      .hero .media{min-height:var(--hero-mobile-minh)}            /* taller sky on mobile */
+      .hero .media{min-height:var(--hero-mobile-minh)}
       .hero .content{
-        position:static;                                          /* leave normal flow */
+        position:relative;                             /* make it positioned */
+        z-index:2;                                     /* ensure it paints above .overlay */
         display:grid; align-items:end; justify-items:center;
-        padding:1rem 1rem var(--hero-mobile-bottom);              /* move text UP by adding bottom space */
+        padding:1rem 1rem var(--hero-mobile-bottom);   /* raises text inside image */
       }
-      .hero .panel{margin:0}                                      /* remove big vh margin */
+      .hero .panel{margin:0}                           /* remove vh margin that caused push-down */
     }
 
     @media (min-width:821px){
