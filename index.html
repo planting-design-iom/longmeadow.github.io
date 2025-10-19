@@ -6,7 +6,15 @@
   <title>Long Meadow Environmental Consultants</title>
   <meta name="description" content="Ecology, planning and planting for people and wildlife across the Isle of Man and beyond." />
   <style>
-    :root{ --colour-bg:#FCFCFA; --colour-text:#2E3540; --colour-accent:#557A57; --colour-accent-2:#A6C1A6; --colour-muted:#E9E4DC; --maxw:1100px; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08) }
+    :root{
+      --colour-bg:#FCFCFA; --colour-text:#2E3540; --colour-accent:#557A57; --colour-accent-2:#A6C1A6;
+      --colour-muted:#E9E4DC; --maxw:1100px; --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08);
+
+      /* === Tweak these two to fine-position mobile portrait hero content === */
+      --hero-mobile-minh: clamp(500px, 100vw, 720px);   /* sky.png height on small screens */
+      --hero-mobile-bottom: 18vh;                       /* push text UP from bottom (increase = higher) */
+    }
+
     html,body{height:100%}
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--colour-bg);color:var(--colour-text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
@@ -15,7 +23,7 @@
     p{margin:.25rem 0 1rem} a{color:var(--colour-accent);text-decoration:none} a:focus,a:hover{text-decoration:underline}
     .container{max-width:var(--maxw);margin-inline:auto;padding:0 1.2rem}
 
-    /* Header & navigation — clean, robust */
+    /* Header & navigation — desktop/default */
     header{position:sticky;top:0;background:rgba(252,252,250,.95);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #ecebe7;z-index:20}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:84px}
     .brand{flex:0 0 auto}
@@ -26,60 +34,10 @@
     nav a:focus-visible{outline:3px solid var(--colour-accent-2);outline-offset:2px}
     .menu-btn{display:none;background:transparent;border:1px solid #dcd9d2;border-radius:10px;padding:.4rem .6rem;cursor:pointer}
 
-    @media (max-width:820px){
-      .nav{position:relative;min-height:76px}
-      .brand img{max-height:54px;max-width:64vw}
-
-      /* MOBILE FIX: keep the menu button out of the logo’s way by pinning it to the right. */
-      .menu-btn{
-        display:inline-block;
-        position:absolute;
-        right:1rem;                 /* moved from center to right */
-        top:50%;
-        transform:translateY(-50%); /* vertical centring only */
-        margin:0;
-      }
-
-      nav ul{
-        position:absolute;
-        right:1rem;
-        top:calc(100% + 8px);
-        background:#fff;border:1px solid #ecebe7;border-radius:12px;box-shadow:var(--shadow);
-        padding:.5rem;display:none;flex-direction:column;min-width:200px
-      }
-      header.open nav ul{display:flex}
-
-      /* ---------- HERO MOBILE FIXES ---------- */
-      /* Use grid layering so the text sits inside the image area without overlap. */
-      .hero{display:grid}
-      .hero>.media, .hero>.content{grid-area:1/1}   /* stack media and content */
-      .hero .media{min-height:clamp(420px,80vw,620px)} /* keep your existing mobile height */
-      .hero .content{
-        position:static;           /* was absolute */
-        display:grid;
-        align-items:end;           /* push panel to lower portion of image */
-        justify-items:center;
-        padding:1rem 1rem 2rem;    /* breathing room above the next section */
-      }
-      .hero .panel{
-        margin:0;                  /* remove large vh-based margin that caused push-down */
-        max-width:900px;color:white;text-align:center;padding:1rem;
-      }
-      /* --------------------------------------- */
-    }
-
-    @media (min-width:821px){
-      .menu-btn{display:none}
-      header nav ul{
-        display:flex !important;position:static !important;background:transparent !important;border:0 !important;
-        box-shadow:none !important;padding:0 !important;flex-direction:row !important;align-items:center;gap:1.2rem
-      }
-    }
-
     /* Sections */
     section{padding:3rem 0}
 
-    /* Hero (desktop / default rules stay as-is) */
+    /* Hero — desktop/default rules */
     .hero{position:relative;isolation:isolate}
     .hero .media{position:relative;min-height:clamp(420px,65vw,620px);background:#cfe0f5}
     .hero .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top}
@@ -115,6 +73,49 @@
     footer{border-top:1px solid #ecebe7;padding:2rem 0;background:#fbfbf9}
     .footer-inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
     .small{font-size:.9rem;color:#5b6570}
+
+    /* ====================================================================== */
+    /* MOBILE-ONLY OVERRIDES — placed AFTER the default rules so they win     */
+    /* ====================================================================== */
+    @media (max-width:820px){
+
+      /* Burger button anchored right (prevents overlap with logo) */
+      .nav{position:relative;min-height:76px}
+      .brand img{max-height:54px;max-width:64vw}
+      .menu-btn{
+        display:inline-block;
+        position:absolute;
+        right:1rem;
+        top:50%;
+        transform:translateY(-50%);
+        margin:0;
+      }
+      nav ul{
+        position:absolute; right:1rem; top:calc(100% + 8px);
+        background:#fff;border:1px solid #ecebe7;border-radius:12px;box-shadow:var(--shadow);
+        padding:.5rem;display:none;flex-direction:column;min-width:200px
+      }
+      header.open nav ul{display:flex}
+
+      /* ---- HERO FIX: layer via grid, no absolute content, and add bottom offset ---- */
+      .hero{display:grid}                                         /* stack children */
+      .hero>.media, .hero>.content{grid-area:1/1}
+      .hero .media{min-height:var(--hero-mobile-minh)}            /* taller sky on mobile */
+      .hero .content{
+        position:static;                                          /* leave normal flow */
+        display:grid; align-items:end; justify-items:center;
+        padding:1rem 1rem var(--hero-mobile-bottom);              /* move text UP by adding bottom space */
+      }
+      .hero .panel{margin:0}                                      /* remove big vh margin */
+    }
+
+    @media (min-width:821px){
+      .menu-btn{display:none}
+      header nav ul{
+        display:flex !important;position:static !important;background:transparent !important;border:0 !important;
+        box-shadow:none !important;padding:0 !important;flex-direction:row !important;align-items:center;gap:1.2rem
+      }
+    }
   </style>
 </head>
 <body>
