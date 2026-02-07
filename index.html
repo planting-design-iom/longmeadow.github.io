@@ -7,30 +7,19 @@
   <meta name="description" content="Ecological surveys, assessment and landscape design across the Isle of Man and beyond." />
 
   <style>
-    /* =========================================
-       Long Meadow — single-file site
-       Notes for future-you:
-       - Main colours live in :root
-       - Hero text is kept readable using a semi-transparent PANEL (not an overlay)
-       - Images are referenced by your existing filenames
-       ========================================= */
-
     :root{
-      /* Brand / surfaces */
-      --banner-bg:#f3efeb;          /* You provided this */
+      --banner-bg:#f3efeb;
       --page-bg:#fcfcfa;
       --text:#233042;
       --muted:#5b6570;
       --card:#ffffff;
       --border:#e7e1db;
 
-      /* Brighter but still “environmental professional” */
-      --accent:#2f6b46;             /* confident green */
-      --accent-2:#1f7a7a;           /* teal for highlights */
-      --accent-warm:#d07a2a;        /* warm accent, used sparingly */
-      --accent-soft:#e9f3ee;        /* pale green wash */
+      --accent:#2f6b46;
+      --accent-2:#1f7a7a;
+      --accent-warm:#d07a2a;
+      --accent-soft:#e9f3ee;
 
-      /* UI */
       --radius:16px;
       --shadow:0 10px 28px rgba(0,0,0,.10);
       --maxw:1100px;
@@ -63,14 +52,11 @@
     section{padding:3rem 0}
     [id]{scroll-margin-top:96px}
 
-    /* =========================================
-       Header / Nav
-       ========================================= */
     header{
       position:sticky;
       top:0;
       z-index:30;
-      background:rgba(243,239,235,.92); /* banner colour with transparency */
+      background:rgba(243,239,235,.92);
       backdrop-filter:saturate(180%) blur(6px);
       border-bottom:1px solid var(--border);
     }
@@ -127,7 +113,6 @@
       .brand img{max-height:56px}
       .menu-btn{display:inline-flex;align-items:center;justify-content:center}
 
-      /* Dropdown */
       nav ul{
         position:absolute;
         right:1.2rem;
@@ -146,11 +131,6 @@
       nav a{width:100%; text-align:left}
     }
 
-    /* =========================================
-       Hero
-       - No overlay layer on the image
-       - Readability handled by the panel itself
-       ========================================= */
     .hero{position:relative;padding:0}
     .hero .media{
       position:relative;
@@ -173,8 +153,8 @@
       display:grid;
       place-items:center;
       padding:1.2rem;
-      z-index:2; /* ensure on top of photo */
-      pointer-events:none; /* panel will re-enable */
+      z-index:2;
+      pointer-events:none;
     }
 
     .hero .panel{
@@ -184,7 +164,7 @@
       text-align:center;
       padding:1.15rem 1.2rem;
       border-radius:18px;
-      background:rgba(0,0,0,.33);     /* readability without an overlay */
+      background:rgba(0,0,0,.33);
       backdrop-filter: blur(6px);
       box-shadow:var(--shadow);
       border:1px solid rgba(255,255,255,.12);
@@ -228,9 +208,6 @@
       .hero .panel{padding:1.05rem}
     }
 
-    /* =========================================
-       Section headers / intro strip
-       ========================================= */
     .section-lead{
       background:linear-gradient(180deg, rgba(47,107,70,.10), rgba(47,107,70,0));
       border-top:1px solid rgba(47,107,70,.12);
@@ -238,9 +215,6 @@
       padding:1.2rem 0;
     }
 
-    /* =========================================
-       Cards / grids
-       ========================================= */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -285,9 +259,6 @@
       margin:.35rem 0 .5rem;
     }
 
-    /* =========================================
-       About / Team
-       ========================================= */
     .about{
       display:grid;
       gap:1.2rem;
@@ -333,9 +304,39 @@
     }
     .team .person p{margin:0;color:var(--muted);font-size:.95rem}
 
-    /* =========================================
-       Footer
-       ========================================= */
+    .portfolio-intro{max-width:80ch}
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1rem;
+      margin-top:1.2rem;
+    }
+    .portfolio-item{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.05);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .portfolio-item .media{
+      display:grid;
+      gap:.5rem;
+      padding:.8rem .8rem 0;
+    }
+    .portfolio-item .media img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .portfolio-item .media.two{grid-template-columns:1fr 1fr}
+    .portfolio-item .media.two img{height:160px}
+    .portfolio-item .body{padding:1rem}
+    .portfolio-item .meta{color:var(--muted);font-size:.92rem;margin:0}
+
     footer{
       border-top:1px solid var(--border);
       padding:2rem 0;
@@ -356,8 +357,7 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <!-- Using your provided banner/logo image -->
-        <img src="assets/images/website-banner.png" alt="Long Meadow Ecological Consultants logo" loading="eager" />
+        <img src="assets/images/website-banner-v2.png" alt="Long Meadow Ecological Consultants logo" loading="eager" />
       </div>
 
       <button class="menu-btn" aria-expanded="false" aria-controls="primary-menu" title="Menu">☰</button>
@@ -367,6 +367,7 @@
           <li><a href="#services">What we offer</a></li>
           <li><a href="#details">Services detail</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -374,10 +375,9 @@
   </header>
 
   <main id="main">
-    <!-- HERO -->
     <section class="hero" aria-label="Intro">
       <div class="media">
-        <img src="assets/images/hero-sky.png" alt="Orange sunset sky with structure silhouette" />
+        <img src="assets/images/hero-sky-v2.png" alt="Orange sunset sky with structure silhouette" />
       </div>
 
       <div class="content">
@@ -394,7 +394,6 @@
       </div>
     </section>
 
-    <!-- SERVICES INTRO -->
     <div class="section-lead">
       <section id="services" class="container" aria-labelledby="services-title" style="padding:1.8rem 0">
         <h2 id="services-title">What we offer</h2>
@@ -405,11 +404,10 @@
       </section>
     </div>
 
-    <!-- SERVICE CARDS -->
     <section class="container" aria-label="Core services">
       <div class="grid" role="list">
         <article class="card" role="listitem">
-          <img src="assets/images/service-emp.jpg" alt="Moth on flower" loading="lazy" />
+          <img src="assets/images/service-emp-v2.jpg" alt="Moth on flower" loading="lazy" />
           <div class="body">
             <div class="kicker">Core service</div>
             <h3><a href="#emp">Ecological Management Planning</a></h3>
@@ -418,7 +416,7 @@
         </article>
 
         <article class="card" role="listitem">
-          <img src="assets/images/service-pea.jpg" alt="Wildlife and habitat photo" loading="lazy" />
+          <img src="assets/images/service-pea-v2.jpg" alt="Wildlife and habitat photo" loading="lazy" />
           <div class="body">
             <div class="kicker">Core service</div>
             <h3><a href="#pea">Preliminary Ecological Assessment (PEA)</a></h3>
@@ -427,7 +425,7 @@
         </article>
 
         <article class="card" role="listitem">
-          <img src="assets/images/service-eia.jpg" alt="Wildlife and habitat photo" loading="lazy" />
+          <img src="assets/images/service-eia-v2.jpg" alt="Wildlife and habitat photo" loading="lazy" />
           <div class="body">
             <div class="kicker">Core service</div>
             <h3><a href="#eia">Ecological Impact Assessment (EIA)</a></h3>
@@ -436,7 +434,7 @@
         </article>
 
         <article class="card" role="listitem">
-          <img src="assets/images/about-fungus.jpg" alt="Woodland stream and bridge" loading="lazy" />
+          <img src="assets/images/about-fungus-v2.jpg" alt="Woodland stream and bridge" loading="lazy" />
           <div class="body">
             <div class="kicker">Design</div>
             <h3><a href="#landscape">Landscape design</a></h3>
@@ -445,11 +443,20 @@
         </article>
 
         <article class="card" role="listitem">
-          <img src="assets/images/offer-geum.jpg" alt="Orange flower close-up" loading="lazy" />
+          <img src="assets/images/offer-geum-v2.jpg" alt="Orange flower close-up" loading="lazy" />
           <div class="body">
             <div class="kicker">Planting</div>
             <h3><a href="#planting">Bespoke planting &amp; seed mixes</a></h3>
             <p>Planting plans and seed mixes suited to local conditions to support pollinators and people.</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img src="assets/images/ballasalla-seeded-v2.JPG" alt="Wildflower meadow planting" loading="lazy" />
+          <div class="body">
+            <div class="kicker">Portfolio</div>
+            <h3><a href="#portfolio">Project portfolio</a></h3>
+            <p>A selection of ecological, landscape and planting projects across public and private sites.</p>
           </div>
         </article>
       </div>
@@ -459,7 +466,6 @@
       </p>
     </section>
 
-    <!-- SERVICE DETAILS -->
     <section id="details" class="container" aria-label="Service details">
       <h2>Service detail</h2>
 
@@ -511,7 +517,6 @@
       </article>
     </section>
 
-    <!-- ABOUT -->
     <section id="about" class="container" aria-labelledby="about-title">
       <div class="about">
         <div>
@@ -530,7 +535,7 @@
           </p>
         </div>
 
-        <img src="assets/images/about-fungus.jpg" alt="Woodland stream and bridge" loading="lazy" />
+        <img src="assets/images/about-fungus-v2.jpg" alt="Woodland stream and bridge" loading="lazy" />
       </div>
 
       <h2 style="margin-top:2rem">About us</h2>
@@ -540,10 +545,10 @@
 
       <div class="team" aria-label="Team">
         <div class="person">
-          <img src="assets/images/about-us-erica.jpg" alt="Dr Erica Spencer" loading="lazy" />
+          <img src="assets/images/about-us-erica-v2.jpg" alt="Dr Erica Spencer" loading="lazy" />
           <div class="body">
             <h3 class="name">Dr Erica Spencer</h3>
-            <div class="role">Ecology</div>
+            <div class="role">Senior Ecologist</div>
             <p>
               Member of CIEEM and the British Ecological Society. Extensive experience advising on environmental and ecological matters for the Isle of Man Planning Department, DEFA, Manx National Heritage, the Manx Wildlife Trust and local interest groups.
             </p>
@@ -551,7 +556,7 @@
         </div>
 
         <div class="person">
-          <img src="assets/images/about-us-phil.jpg" alt="Philip Payne" loading="lazy" />
+          <img src="assets/images/about-us-phil-v2.jpg" alt="Philip Payne" loading="lazy" />
           <div class="body">
             <h3 class="name">Philip Payne</h3>
             <div class="role">Landscape &amp; planting</div>
@@ -562,10 +567,10 @@
         </div>
 
         <div class="person">
-          <img src="assets/images/about-us-lydia.jpg" alt="Lydia Spencer" loading="lazy" />
+          <img src="assets/images/about-us-lydia-v2.jpg" alt="Lydia Spencer" loading="lazy" />
           <div class="body">
             <h3 class="name">Lydia Spencer</h3>
-            <div class="role">Communication</div>
+            <div class="role">Communication &amp; Ecology</div>
             <p>
               Experienced in supporting people to identify the best approach to achieve their goals. A part-time member of the team and also studying ecology, contributing up-to-date knowledge on emerging practices and initiatives.
             </p>
@@ -574,7 +579,98 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <section id="portfolio" class="container" aria-labelledby="portfolio-title">
+      <h2 id="portfolio-title">Portfolio</h2>
+
+      <div class="portfolio-intro">
+        <p>
+          This portfolio presents a selection of ecological, landscape and planting projects delivered across a range of contexts, including protected sites, historic landscapes, public land and private gardens.
+        </p>
+        <p>
+          Each project is shaped by its specific setting, with careful consideration given to ecological value, site conditions, long-term management and practical delivery. Our work combines clear assessment, thoughtful design and proportionate solutions that respond to both environmental objectives and client needs.
+        </p>
+        <p>
+          Projects range from ecological surveys and management planning to bespoke planting schemes and landscape interventions, with a shared emphasis on resilience, biodiversity and clarity of purpose.
+        </p>
+      </div>
+
+      <div class="portfolio-grid" role="list">
+        <article class="portfolio-item" role="listitem">
+          <div class="media two">
+            <img src="assets/images/calf-management-v2.png" alt="Calf of Man Management Plan cover" loading="lazy" />
+            <img src="assets/images/calf-stamps-v2.png" alt="Commemorative stamps marking the 70th anniversary of the Manx National Trust" loading="lazy" />
+          </div>
+          <div class="body">
+            <h3>Calf of Man Management Plan</h3>
+            <p class="meta">
+              Preparation of the Calf of Man Management Plan for Manx National Heritage, alongside the accompanying written content produced to support the publication of commemorative stamps marking the 70th anniversary of the Manx National Trust.
+            </p>
+          </div>
+        </article>
+
+        <article class="portfolio-item" role="listitem">
+          <div class="media">
+            <img src="assets/images/atlantic-salmon-v2.png" alt="Field surveys for Atlantic salmon" loading="lazy" />
+          </div>
+          <div class="body">
+            <h3>Atlantic Salmon Survey</h3>
+            <p class="meta">
+              Field surveys for Atlantic salmon carried out in collaboration with DEFA Inland Fisheries, contributing to the monitoring and management of freshwater habitats.
+            </p>
+          </div>
+        </article>
+
+        <article class="portfolio-item" role="listitem">
+          <div class="media">
+            <img src="assets/images/ayres-shearwater-v2.png" alt="Shearwater in flight over sea" loading="lazy" />
+          </div>
+          <div class="body">
+            <h3>Ayres Nature Reserve Management Plan</h3>
+            <p class="meta">
+              Ecological surveys, including bird surveys, undertaken to inform the Ayres Nature Reserve Management Plan and support long-term conservation objectives.
+            </p>
+          </div>
+        </article>
+
+        <article class="portfolio-item" role="listitem">
+          <div class="media two">
+            <img src="assets/images/cregneash-seeded-a-v2.jpg" alt="Bespoke seed mix at Cregneash Village" loading="lazy" />
+            <img src="assets/images/cregneash-seeded-b-v2.JPG" alt="Flowering display from bespoke seed mix at Cregneash Village" loading="lazy" />
+          </div>
+          <div class="body">
+            <h3>Bespoke Seed Mix – Cregneash Village</h3>
+            <p class="meta">
+              Design and implementation of a bespoke seed mix for Cregneash Village, created to provide a long succession of flowering while supporting pollinators and reflecting the character of the historic landscape.
+            </p>
+          </div>
+        </article>
+
+        <article class="portfolio-item" role="listitem">
+          <div class="media">
+            <img src="assets/images/woodland-santon-v2.png" alt="Woodland development plan" loading="lazy" />
+          </div>
+          <div class="body">
+            <h3>Woodland Development – Santon</h3>
+            <p class="meta">
+              Woodland development project focused on structure, species selection and long-term resilience, enhancing biodiversity while integrating with the surrounding landscape.
+            </p>
+          </div>
+        </article>
+
+        <article class="portfolio-item" role="listitem">
+          <div class="media">
+            <img src="assets/images/ballasalla-meadow-v2.JPG" alt="Garden meadow in Ballasalla" loading="lazy" />
+          </div>
+          <div class="body">
+            <h3>Garden Meadow – Ballasalla</h3>
+            <p class="meta">
+              Creation of a large garden meadow designed to maximise seasonal interest and ecological value, using carefully selected species suited to local soil conditions and ongoing management.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="contact" class="container" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
       <p>
@@ -591,17 +687,15 @@
   <footer>
     <div class="container footer-inner">
       <div class="brand">
-        <img src="assets/images/website-banner.png" alt="Long Meadow logo" style="max-height:44px" />
+        <img src="assets/images/website-banner-v2.png" alt="Long Meadow logo" style="max-height:44px" />
       </div>
       <div class="small">© <span id="year"></span> Long Meadow Ecological Consultants</div>
     </div>
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Mobile menu toggle + close on click
     const headerEl = document.querySelector('header');
     const btn = document.querySelector('.menu-btn');
     const links = document.querySelectorAll('#primary-menu a');
